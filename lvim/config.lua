@@ -14,6 +14,10 @@ lvim.format_on_save = true
 lvim.colorscheme = "tokyonight"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevel = 10000
+vim.opt.foldcolumn = "1"
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -23,6 +27,7 @@ lvim.keys.insert_mode["<C-s>"] = "<C-o>:w<cr>"
 lvim.keys.normal_mode["<Tab>"] = ":bnext<cr>"
 lvim.keys.normal_mode["<S-Tab>"] = ":bprev<cr>"
 lvim.keys.normal_mode["<C-n>"] = ":Telescope find_files<cr>"
+lvim.keys.normal_mode["<C-j>"] = ":ToggleTerm<cr>"
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 -- unmap a default keymapping
@@ -33,7 +38,10 @@ lvim.keys.normal_mode["<C-n>"] = ":Telescope find_files<cr>"
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
 -- local _, actions = pcall(require, "telescope.actions")
-lvim.builtin.telescope.defaults.file_ignore_patterns = { "node_modules" }
+lvim.builtin.telescope.defaults.file_ignore_patterns = { 
+  "node_modules",
+  ".git"
+}
 -- lvim.builtin.telescope.defaults.mappings = {
 --   -- for input mode
 --   i = {
@@ -67,8 +75,9 @@ lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
-lvim.builtin.nvimtree.setup.view.side = "left"
+lvim.builtin.nvimtree.setup.view.side = "right"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+lvim.builtin.nvimtree.setup.actions.open_file.resize_window = true
 vim.g.NERDTreeWinSize = 60
 
 -- if you don't want all the parsers change this to a table of the ones you want
@@ -177,6 +186,7 @@ lvim.plugins = {
   --       cmd = "TroubleToggle",
   --     },
 }
+
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
