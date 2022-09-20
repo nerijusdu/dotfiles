@@ -18,6 +18,7 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevel = 10000
 vim.opt.foldcolumn = "1"
+vim.opt.relativenumber = true
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -181,6 +182,7 @@ formatters.setup {
 -- Additional Plugins
 lvim.plugins = {
   { "folke/tokyonight.nvim" },
+  { "nvim-treesitter/nvim-treesitter-context"},
   --     {
   --       "folke/trouble.nvim",
   --       cmd = "TroubleToggle",
