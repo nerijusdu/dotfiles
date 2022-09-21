@@ -147,7 +147,11 @@ formatters.setup {
   {
     command = "goimports",
     filetypes = { "go" }
-  }
+  },
+  {
+    command = "eslint_d",
+    filetypes = { "typescript", "typescriptreact" },
+  },
   --   { command = "black", filetypes = { "python" } },
   --   { command = "isort", filetypes = { "python" } },
   --   {
@@ -162,8 +166,12 @@ formatters.setup {
 }
 
 -- -- set additional linters
--- local linters = require "lvim.lsp.null-ls.linters"
--- linters.setup {
+local linters = require "lvim.lsp.null-ls.linters"
+linters.setup {
+  { 
+    command = "eslint_d", 
+    filetypes = { "typescript", "typescriptreact" },
+  },
 --   { command = "flake8", filetypes = { "python" } },
 --   {
 --     -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
@@ -177,7 +185,7 @@ formatters.setup {
 --     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
 --     filetypes = { "javascript", "python" },
 --   },
--- }
+}
 
 -- Additional Plugins
 lvim.plugins = {
