@@ -38,6 +38,11 @@ lvim.keys.normal_mode["<leader>S"] = "<cmd>lua require('spectre').open()<CR>"
 lvim.keys.normal_mode["<leader>sw"] = "<cmd>lua require('spectre').open_visual({select_word=true})<CR>"
 lvim.keys.normal_mode["<leader>mm"] = ":MinimapToggle<cr>"
 lvim.keys.normal_mode["<leader>mr"] = ":MinimapRefresh<cr>"
+lvim.keys.normal_mode["<cr>"] = "a<cr>"
+lvim.keys.normal_mode[","] = "a,"
+lvim.keys.normal_mode["U"] = ":redo<cr>"
+lvim.keys.insert_mode["C-z"] = ":undo<cr>"
+lvim.keys.insert_mode["C-y"] = ":redo<cr>"
 
 -- lvim.keys.normal_mode["<C-q>"] = ":q<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
 
@@ -81,7 +86,7 @@ lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
-lvim.builtin.nvimtree.setup.view.side = "right"
+lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 lvim.builtin.nvimtree.setup.actions.open_file.resize_window = true
 vim.g.NERDTreeWinSize = 60
@@ -151,6 +156,10 @@ formatters.setup {
     filetypes = { "go" }
   },
   {
+    command = "gofmt",
+    filetypes = { "go" }
+  },
+  {
     command = "eslint_d",
     filetypes = { "typescript", "typescriptreact" },
   },
@@ -195,12 +204,14 @@ lvim.plugins = {
   { "nvim-treesitter/nvim-treesitter-context"},
   { "windwp/nvim-spectre" },
   { "wfxr/minimap.vim" },
+  { "ray-x/lsp_signature.nvim" },
   --     {
   --       "folke/trouble.nvim",
   --       cmd = "TroubleToggle",
   --     },
 }
 
+require("lsp_signature").setup({})
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
