@@ -38,7 +38,7 @@ lvim.keys.normal_mode["<leader>S"] = "<cmd>lua require('spectre').open()<CR>"
 lvim.keys.normal_mode["<leader>sw"] = "<cmd>lua require('spectre').open_visual({select_word=true})<CR>"
 lvim.keys.normal_mode["<leader>mm"] = ":MinimapToggle<cr>"
 lvim.keys.normal_mode["<leader>mr"] = ":MinimapRefresh<cr>"
-lvim.keys.normal_mode["<cr>"] = "a<cr>"
+-- lvim.keys.normal_mode["<cr>"] = "a<cr>"
 lvim.keys.normal_mode[","] = "a,"
 lvim.keys.normal_mode["U"] = ":redo<cr>"
 lvim.keys.insert_mode["C-z"] = ":undo<cr>"
@@ -70,16 +70,12 @@ lvim.builtin.telescope.defaults.file_ignore_patterns = {
 
 -- Use which-key to add extra bindings with the leader-key prefix
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
--- lvim.builtin.which_key.mappings["t"] = {
---   name = "+Trouble",
---   r = { "<cmd>Trouble lsp_references<cr>", "References" },
---   f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
---   d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
---   q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
---   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
---   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
--- }
-
+-- lvim.keys.normal_mode["<leader>lR"] = "<cmd>Trouble lsp_references<cr>"
+lvim.builtin.which_key.mappings["l"]["R"] = { "<cmd>Trouble lsp_references<cr>", "References"}
+lvim.builtin.which_key.mappings["l"].f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions"}
+lvim.builtin.which_key.mappings["l"].d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics"}
+lvim.builtin.which_key.mappings["l"].q = { "<cmd>Trouble quickfix<cr>", "Quickfix"}
+lvim.builtin.which_key.mappings["l"].w = { "<cmd>Trouble workspace_diagnostics<cr>", "WS Diagnostics"}
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
@@ -205,12 +201,12 @@ lvim.plugins = {
   { "windwp/nvim-spectre" },
   { "wfxr/minimap.vim" },
   { "ray-x/lsp_signature.nvim" },
-  --     {
-  --       "folke/trouble.nvim",
-  --       cmd = "TroubleToggle",
-  --     },
+      {
+        "folke/trouble.nvim",
+      },
 }
 
+require("trouble").setup({})
 require("lsp_signature").setup({})
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
